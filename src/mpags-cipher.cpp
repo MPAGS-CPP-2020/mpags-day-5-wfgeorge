@@ -11,6 +11,7 @@
 #include "ProcessCommandLine.hpp"
 #include "CaesarCipher.hpp"
 #include "PlayfairCipher.hpp"
+#include "VigenereCipher.hpp"
   
 // Main function of the mpags-cipher program
 int main(int argc, char* argv[])
@@ -105,16 +106,22 @@ int main(int argc, char* argv[])
   switch ( settings.cipherType ) {
     case CipherType::Caesar :
       {
-	// Run the Caesar cipher (using the specified key and encrypt/decrypt flag) on the input text
-	CaesarCipher cipher { settings.cipherKey };
-	outputText = cipher.applyCipher( inputText, settings.cipherMode );
-	break;
+	    // Run the Caesar cipher (using the specified key and encrypt/decrypt flag) on the input text
+	    CaesarCipher cipher { settings.cipherKey };
+	    outputText = cipher.applyCipher( inputText, settings.cipherMode );
+	    break;
       }
     case CipherType::Playfair :
       {
-	PlayfairCipher cipher { settings.cipherKey };
-	outputText = cipher.applyCipher( inputText, settings.cipherMode );
-	break;
+	    PlayfairCipher cipher { settings.cipherKey };
+	    outputText = cipher.applyCipher( inputText, settings.cipherMode );
+	    break;
+      }
+    case CipherType::Vigenere :
+      {
+      VigenereCipher cipher { settings.cipherKey };
+      outputText = cipher.applyCipher(inputText, settings.cipherMode );
+      break;
       }
   }
 
